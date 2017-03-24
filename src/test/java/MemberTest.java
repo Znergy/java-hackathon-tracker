@@ -1,3 +1,7 @@
+import org.junit.*;
+import static org.junit.Assert.*;
+import java.util.*;
+
 public class MemberTest {
   // test for contstructor
   @Test

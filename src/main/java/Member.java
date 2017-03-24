@@ -13,4 +13,32 @@ public class Member {
     this.github = github;
     this.id = allMembers.size() * 5000;
   }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public String getSkills() {
+    return this.skills;
+  }
+
+  public String getGithub() {
+    return this.github;
+  }
+
+  public int getId() {
+    return this.id;
+  }
+
+  public static List<Member> getAllMembers() {
+    return allMembers;
+  }
+
+  public static Member find(int id) {
+    try {
+      return allMembers.get(id - 1);
+    } catch (IndexOutOfBoundsException exception) {
+      return null;
+    }
+  }
 }

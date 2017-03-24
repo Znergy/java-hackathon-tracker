@@ -1,4 +1,12 @@
+import org.junit.*;
+import static org.junit.Assert.*;
+import java.util.*;
+
 public class TeamTest {
+  @Before
+  public void tearDown() {
+    Team.clearList();
+  }
   // test for constructor
   @Test
   public void Team_constructorCreatesTeamInstance_true() {
@@ -21,6 +29,13 @@ public class TeamTest {
   @Test
   public void getGithub_returnGithub_github() {
     Team team = new Team("Three Amigos", "New Platform", "https://github.com/znergy/repo-name");
-    assertEquals("https://github.com/znergy/repo-name", team.getDescription());
+    assertEquals("https://github.com/znergy/repo-name", team.getGithub());
   }
+  // test for
+  @Test
+  public void getId_returnId_Id() {
+    Team team = new Team("Three Amigos", "New Platform", "https://github.com/znergy/repo-name");
+    assertEquals(1, team.getId());
+  }
+
 }

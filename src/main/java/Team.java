@@ -12,13 +12,13 @@ public class Team {
     this.name = name;
     this.description = description;
     this.github = github;
-    this.id = allTeams.size();
     allTeams.add(this);
+    this.id = allTeams.size();
   }
 
-  // public String getName() {
-  //   return this.name;
-  // }
+  public String getName() {
+    return this.name;
+  }
 
   public String getDescription() {
     return this.description;
@@ -38,6 +38,10 @@ public class Team {
 
   public static List<Team> getAllTeams() {
     return allTeams;
+  }
+
+  public static void clearList() {
+    allTeams.clear();
   }
 
   public static Team find(int id) {
