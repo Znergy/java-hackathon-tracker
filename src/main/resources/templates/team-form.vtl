@@ -1,18 +1,18 @@
 <!-- Team Form -->
 <div class="well">
   <h2>Add a team</h2>
-  <form action="/job-form" method="post">
+  <form action="/team-form" method="post">
     <div class="input-group">
-      <span class="input-group-addon">Team Name</span>
-      <input class="form-control" placeholder="West Virginia Miners" type="text" />
+      <span class="input-group-addon" for="name">Team Name</span>
+      <input class="form-control" placeholder="West Virginia Miners" name="name" type="text" />
     </div>
     <div class="input-group">
-      <span class="input-group-addon">Team Description</span>
-      <input class="form-control" placeholder="Building an ecommerce mobile platform." type="text" />
+      <span class="input-group-addon" for="description">Team Description</span>
+      <input class="form-control" name="description" placeholder="Building an ecommerce mobile platform." type="text" />
     </div>
     <div class="input-group">
-      <span class="input-group-addon">Team Github Repository</span>
-      <input class="form-control" placeholder="https://github.com/user-name/repo-name" type="text" />
+      <span class="input-group-addon" for="github">Team Github Repository</span>
+      <input class="form-control" name="github" placeholder="https://github.com/user-name/repo-name" type="text" />
     </div>
     <button class="btn btn-primary" type="submit">
       <span class="glyphicon glyphicon-transfer iconStyle"></span> Create Team
