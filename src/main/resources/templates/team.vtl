@@ -3,7 +3,7 @@
   <h1>$team.getName()</h1>
   <div class="row">
     <div class="col-md-6">
-      <h2>Description</h2>
+      <h2>Team Details</h2>
       <p>$team.getDescription()</p>
       <h2>Github</h2>
       <p><a href="$team.getGithub()" target="_blank">Github Repository</a></p>
@@ -20,7 +20,7 @@
     <div class="col-md-6">
       <div class="team-members">
         <h2>Members</h2>
-        #if ($team.getMembers())
+        #if ($team.getMembers() > 0)
           <ul>
             #foreach ($member in $team.getMembers())
               <li><a href="team/$team.getId()/member/$member.getId()">$member.getName()</a></li>
@@ -40,5 +40,4 @@
     </div>
   </div>
 </div>
-
 <!-- Team Page -->
