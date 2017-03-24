@@ -1,0 +1,44 @@
+<!-- Team Page -->
+<div class="well">
+  <h1>$team.getName()</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Description</h2>
+      <p>$team.getDescription()</p>
+      <h2>Github</h2>
+      <p><a href="$team.getGithub()" target="_blank">Github Repository</a></p>
+    </div>
+    <div class="col-md-6">
+      <div class="team-img">
+        <img src="images/team-img.jpg" alt="Team Image">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="well">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="team-members">
+        <h2>Members</h2>
+        #if ($team.getMembers())
+          <ul>
+            #foreach ($member in $team.getMembers())
+              <li><a href="team/$team.getId()/member/$member.getId()">$member.getName()</a></li>
+            #end
+          </ul>
+        #else
+          <h4>No members added yet :(</h4>
+        #end
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="member-add">
+        <h2>Add a Member</h2>
+        <p>Adding a member is quick and painless, just click the button below</p>
+        <a href="/team/$team.getId()/member/new"><button type="button" name="button">Add a member</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Team Page -->
