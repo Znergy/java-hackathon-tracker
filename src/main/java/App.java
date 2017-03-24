@@ -1,5 +1,4 @@
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
@@ -12,7 +11,7 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // need to pass in list of teams
-      Team teams = Team.getAllTeams();
+      List<Team> teams = Team.getAllTeams();
       model.put("teams", teams);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
@@ -42,7 +41,7 @@ public class App {
     get("/team/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // pass the id, search for team matching, store found team in 'team'
-      Team team = Team.find(Integer.parseInt(queryParam(":id")));
+      Team team = Team.find(Integer.parseInt(request.params(":id")));
       // then I need access to all the members of that team
       // this will return arraylist of members in that team
       // Team members = team.getMembers(); // *** not in use
@@ -57,7 +56,7 @@ public class App {
     post("/team/:id/member/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // pass the id, search for team matching, store found team in 'team'
-      Team team = Team.find(Integer.parseInt(queryParam(":id")));
+      Team team = Team.find(Integer.parseInt(request.params(":id")));
       // need to take fields from member-form
       String name = request.queryParams("name");
       String skills = request.queryParams("skills");
@@ -74,9 +73,9 @@ public class App {
     get("/team/:id/member/:memberid", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // pass the id, search for team matching, store found team in 'team'
-      Team team = Team.find(Integer.parseInt(queryParam(":id")));
+      Team team = Team.find(Integer.parseInt(request.params(":id")));
       // pass the id, search for member matching id, store found member in 'member'
-      Member member = Member.find(Interger.parseInt(queryParam(":memberid")));
+      Member member = Member.find(Integer.parseInt(request.params(":memberid")));
       model.put("member", member);
       model.put("team", team);
       model.put("template", "templates/team.vtl");

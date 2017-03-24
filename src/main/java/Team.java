@@ -32,12 +32,20 @@ public class Team {
     return this.id;
   }
 
-  public List<Team> getAllTeams() {
-    return this.allTeams;
+  public void addMember(Member member) {
+    this.members.add(member);
   }
 
-  public Team find(int id) {
-    return this.allTeams.get(id - 1);
+  public static List<Team> getAllTeams() {
+    return allTeams;
+  }
+
+  public static Team find(int id) {
+    try {
+      return allTeams.get(id - 1);
+    } catch (IndexOutOfBoundsException exception) {
+      return null;
+    }
   }
 
   public List<Member> getMembers() {
