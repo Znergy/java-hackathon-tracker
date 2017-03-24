@@ -12,7 +12,7 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // need to pass in list of teams
-      Team teams = Team.all();
+      Team teams = Team.getAllTeams();
       model.put("teams", teams);
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
@@ -60,11 +60,10 @@ public class App {
       Team team = Team.find(Integer.parseInt(queryParam(":id")));
       // need to take fields from member-form
       String name = request.queryParams("name");
-      String description = request.queryParams("description");
       String skills = request.queryParams("skills");
       String github = request.queryParams("github");
       // create an object with that
-      Member member = new Member(name, description, skills, github);
+      Member member = new Member(name, skills, github);
       // this will only add to the team that matches the id from url
       team.addMember(member);
       model.put("team", team);
