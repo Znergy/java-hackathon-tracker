@@ -45,9 +45,9 @@ public class App {
       Team team = Team.find(Integer.parseInt(queryParam(":id")));
       // then I need access to all the members of that team
       // this will return arraylist of members in that team
-      Team members = team.getMembers();
+      // Team members = team.getMembers(); // *** not in use
       // add members to model to print out member names
-      model.put("members", members);
+      // model.put("members", members); // *** not in use
       // add team to model to print out team info
       model.put("team", team);
       model.put("template", "templates/team.vtl");
@@ -68,7 +68,7 @@ public class App {
       // this will only add to the team that matches the id from url
       team.addMember(member);
       model.put("team", team);
-      model.put("template", "templates/team.vtl");
+      model.put("template", "templates/member-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
