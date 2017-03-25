@@ -11,20 +11,19 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // need to pass in list of teams
-      List<Team> teams = Team.getAllTeams();
-      model.put("teams", teams);
+      model.put("teams", Team.getAllTeams());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/team-form", (request, response) -> {
+    get("/team/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // displaying team-form (nothing needed..)
       model.put("template", "templates/team-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/team-form", (request, response) -> {
+    post("/team/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // take all the input fields..
       String name = request.queryParams("name");
@@ -42,14 +41,18 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       // pass the id, search for team matching, store found team in 'team'
       Team team = Team.find(Integer.parseInt(request.params(":id")));
-      // then I need access to all the members of that team
-      // this will return arraylist of members in that team
-      // Team members = team.getMembers(); // *** not in use
       // add members to model to print out member names
-      // model.put("members", members); // *** not in use
-      // add team to model to print out team info
       model.put("team", team);
       model.put("template", "templates/team.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/team/:id/member/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      // pass the id, search for team matching, store found team in 'team'
+      Team team = Team.find(Integer.parseInt(request.params(":id")));
+      model.put("team", team);
+      model.put("template", "templates/member-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -66,7 +69,7 @@ public class App {
       // this will only add to the team that matches the id from url
       team.addMember(member);
       model.put("team", team);
-      model.put("template", "templates/member-form.vtl");
+      model.put("template", "templates/member.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

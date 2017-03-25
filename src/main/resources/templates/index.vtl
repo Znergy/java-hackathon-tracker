@@ -4,10 +4,10 @@
     <div class="col-md-6">
       <div class="team-display">
         <h2>Teams</h2>
-        #if ($teams)
+        #if ($teams.size() > 0)
           #foreach($team in $teams)
             <ul>
-              <li>$team.getName()</li>
+              <li><a href="/team/$team.getId()">$team.getName()</a></li>
             </ul>
           #end
         #else
@@ -19,7 +19,7 @@
       <div class="add-team">
         <h2>Add a Team</h2>
         <p>Here at Hackathon Tracker 2.0, we offer a clean UI and enough functionality to help keep your team stay focused on the work, rather than allowing organizational errors to hinder creativity. Each team will have a name, description, and a centralized github repository. You have the ability to add members, and give each member a name, description, skills, and inidvidual github link. Thanks for choosing Hackathon Tracker 2.0, enjoy your hackathon.</p>
-        <a href="/team-form"><button type="button" name="button">Create Team</button></a>
+        <a href="/team/new"><button type="button" name="button">Create Team</button></a>
       </div>
     </div>
   </div>

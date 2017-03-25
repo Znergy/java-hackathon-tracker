@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-6">
       <div class="team-img">
-        <img src="images/team-img.jpg" alt="Team Image">
+        <img src="/team-img.jpg" alt="Team Image">
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
     <div class="col-md-6">
       <div class="team-members">
         <h2>Members</h2>
-        #if ($team.getMembers() > 0)
+        #if ($team.getMembers().size() > 0)
           <ul>
             #foreach ($member in $team.getMembers())
               <li><a href="team/$team.getId()/member/$member.getId()">$member.getName()</a></li>

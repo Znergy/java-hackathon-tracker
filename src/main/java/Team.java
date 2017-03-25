@@ -5,13 +5,14 @@ public class Team {
   private String description;
   private String github;
   private int id;
-  private List<Member> members = new ArrayList<Member>();
+  private List<Member> members;
   private static List<Team> allTeams = new ArrayList<Team>();
 
   public Team(String name, String description, String github) {
     this.name = name;
     this.description = description;
     this.github = github;
+    this.members = new ArrayList<Member>();
     allTeams.add(this);
     this.id = allTeams.size();
   }
@@ -33,7 +34,7 @@ public class Team {
   }
 
   public void addMember(Member member) {
-    this.members.add(member);
+    members.add(member);
   }
 
   public static List<Team> getAllTeams() {
