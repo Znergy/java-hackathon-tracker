@@ -38,4 +38,15 @@ public class TeamTest {
     assertEquals(1, team.getId());
   }
 
+  // test for team.getmembers..
+  @Test
+  public void getMembers_returnListOfMembers_list() {
+    Team team = new Team("Three Amigos", "New Platform", "https://github.com/znergy/repo-name");
+    Member member = new Member("Ryan", "Java and SQL", "https://github.com/znergy");
+    Member member1 = new Member("Ryan", "Java and SQL", "https://github.com/znergy");
+    team.addMember(member);
+    team.addMember(member1);
+    assertEquals(2, team.getMembers().size());
+  }
+
 }

@@ -11,7 +11,8 @@ public class Member {
     this.name = name;
     this.skills = skills;
     this.github = github;
-    this.id = allMembers.size();
+    allMembers.add(this);
+    this.id = allMembers.size() + 5000;
   }
 
   public String getName() {

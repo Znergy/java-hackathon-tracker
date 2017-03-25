@@ -23,7 +23,7 @@
         #if ($team.getMembers().size() > 0)
           <ul>
             #foreach ($member in $team.getMembers())
-              <li><a href="team/$team.getId()/member/$member.getId()">$member.getName()</a></li>
+              <li><a href="/team/$team.getId()/member/$member.getId()">$member.getName()</a></li>
             #end
           </ul>
         #else

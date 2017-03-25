@@ -68,6 +68,7 @@ public class App {
       Member member = new Member(name, skills, github);
       // this will only add to the team that matches the id from url
       team.addMember(member);
+      model.put("member", member);
       model.put("team", team);
       model.put("template", "templates/member.vtl");
       return new ModelAndView(model, layout);
@@ -81,7 +82,7 @@ public class App {
       Member member = Member.find(Integer.parseInt(request.params(":memberid")));
       model.put("member", member);
       model.put("team", team);
-      model.put("template", "templates/team.vtl");
+      model.put("template", "templates/member.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
