@@ -8,6 +8,7 @@ public class App {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
+    /*** Displaying Home Page ***/
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // need to pass in list of teams
@@ -16,6 +17,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    /*** Displaying Team Form ***/
     get("/team/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // displaying team-form (nothing needed..)
@@ -23,7 +25,8 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/team/new", (request, response) -> {
+    /*** Submitting team form ***/
+    post("/team", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // take all the input fields..
       String name = request.queryParams("name");
@@ -37,29 +40,32 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/team/:id", (request, response) -> {
+    /*** Displaying specific team ***/
+    get("/team/:teamid", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // pass the id, search for team matching, store found team in 'team'
-      Team team = Team.find(Integer.parseInt(request.params(":id")));
+      Team team = Team.find(Integer.parseInt(request.params(":teamid")));
       // add members to model to print out member names
       model.put("team", team);
       model.put("template", "templates/team.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/team/:id/member/new", (request, response) -> {
+    /*** Displaying member form ***/
+    get("/team/:teamid/member/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // pass the id, search for team matching, store found team in 'team'
-      Team team = Team.find(Integer.parseInt(request.params(":id")));
+      Team team = Team.find(Integer.parseInt(request.params(":teamid")));
       model.put("team", team);
       model.put("template", "templates/member-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/team/:id/member/new", (request, response) -> {
+    /*** Submitting member form ***/
+    post("/member", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // pass the id, search for team matching, store found team in 'team'
-      Team team = Team.find(Integer.parseInt(request.params(":id")));
+      Team team = Team.find(Integer.parseInt(request.queryParams("teamId")));
       // need to take fields from member-form
       String name = request.queryParams("name");
       String skills = request.queryParams("skills");
@@ -74,10 +80,11 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/team/:id/member/:memberid", (request, response) -> {
+    /*** Displaying specific member ***/
+    get("/team/:teamid/member/:memberid", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // pass the id, search for team matching, store found team in 'team'
-      Team team = Team.find(Integer.parseInt(request.params(":id")));
+      Team team = Team.find(Integer.parseInt(request.params(":teamid")));
       // pass the id, search for member matching id, store found member in 'member'
       Member member = Member.find(Integer.parseInt(request.params(":memberid")));
       model.put("member", member);

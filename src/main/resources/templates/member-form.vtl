@@ -1,18 +1,19 @@
 <!-- Member Form -->
 <div class="well">
   <h2>Add a member to $team.getName()</h2>
-  <form action="/team/$team.getId()/member/new" method="post">
+  <form action="/member" method="post">
+    <input id="teamId" type="hidden" name="teamId" value="$team.getId()">
     <div class="input-group">
       <span class="input-group-addon">Members Name</span>
-      <input class="form-control" placeholder="Dakota Wellington III" type="text" />
+      <input class="form-control" name="name" placeholder="Dakota Wellington III" type="text" />
     </div>
     <div class="input-group">
       <span class="input-group-addon">Members Skills</span>
-      <input class="form-control" placeholder="Java and SQL" type="text" />
+      <input class="form-control" name="skills" placeholder="Java and SQL" type="text" />
     </div>
     <div class="input-group">
       <span class="input-group-addon">Members Github</span>
-      <input class="form-control" placeholder="https://github.com/user-name" type="text" />
+      <input class="form-control" name="github" placeholder="https://github.com/user-name" type="text" />
     </div>
     <button class="btn btn-primary" type="submit">
       <span class="glyphicon glyphicon-transfer iconStyle"></span> Add Member

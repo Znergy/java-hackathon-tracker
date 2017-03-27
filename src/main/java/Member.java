@@ -31,13 +31,17 @@ public class Member {
     return this.id;
   }
 
+  public static void clearList() {
+    allMembers.clear();
+  }
+
   public static List<Member> getAllMembers() {
     return allMembers;
   }
 
   public static Member find(int id) {
     try {
-      return allMembers.get(id - 1);
+      return allMembers.get(id - 5001);
     } catch (IndexOutOfBoundsException exception) {
       return null;
     }

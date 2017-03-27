@@ -3,9 +3,10 @@ import static org.junit.Assert.*;
 import java.util.*;
 
 public class MemberTest {
+
   @Before
   public void tearDown() {
-    Team.clearList();
+    Member.clearList();
   }
 
   // test for constructor
@@ -20,7 +21,14 @@ public class MemberTest {
   public void getId_returnId_Id() {
     Member member = new Member("roy", "java", "https://github.com/znergy/repo-name");
     Member member1 = new Member("roy", "java", "https://github.com/znergy/repo-name");
-    assertEquals(5002, member.getId());
-    assertEquals(5003, member1.getId());
+    assertEquals(5001, member.getId());
+    assertEquals(5002, member1.getId());
+  }
+
+  // test for find method
+  @Test
+  public void find_returnObject_true() {
+    Member member = new Member("roy", "java", "https://github.com/znergy/repo-name");
+    assertEquals(member, member.find(5001));
   }
 }
